@@ -1,6 +1,10 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const Main = () => {
+  const Navigate=useNavigate();
+  const handleClick=()=>{
+    Navigate('/SignUp');
+  }
   return (
     <main className="w-full bg-violet-100 font-sans">
       {/* Hero Section */}
@@ -20,7 +24,7 @@ const Main = () => {
     <p className="mt-4 text-gray-100">
       “A unified platform that ensures secure attendance tracking, personalized career development, and effortless timetable management for students and teachers.”
     </p>
-    <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 hover:scale-105 transition-transform duration-300">
+    <button onClick={handleClick} className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 hover:scale-105 transition-transform duration-300">
       SIGN UP FOR FREE!
     </button>
   </div>

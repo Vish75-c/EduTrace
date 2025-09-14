@@ -2,10 +2,13 @@ import React from 'react'
 import Bottom from '../parts/Bottom';
 import Top from '../parts/Top';
 import { useForm } from 'react-hook-form';
+import { useNavigate ,Link} from 'react-router-dom';
+
 const SignIn = () => {
+    const Navigate=useNavigate();
     const { register, handleSubmit, watch, formState: { errors,isSubmitting } } = useForm({mode:"onSubmit",reValidateMode:"onSubmit"});
     const onSubmit=(data)=>{
-
+        Navigate('/Section');
         console.log(data);
     }
   return (
@@ -15,7 +18,7 @@ const SignIn = () => {
             <div className='absolute w-130 text-gray-600 bg-violet-200 ml-235 mt-25 flex flex-col items-center p-4 rounded-lg shadow-lg'>
                 <img src="/logo.png" alt="logo.alt" className='h-20 w-20'/>
                 <h1 className='text-2xl font-extrabold text-blue-600'>SignIn Form</h1>
-
+                 <h1 className='text-xs'>New User?<Link to="/SignUp" className="text-blue-600">SignUp here</Link></h1>
                 <form  className='flex flex-col w-full items-center mt-8' onSubmit={handleSubmit(onSubmit)}>
                     
                     <input className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-2 py-3 bg-violet-100 w-[80%]" type="text" placeholder='Email*'

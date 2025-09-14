@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="w-full shadow bg-white">
@@ -20,9 +20,9 @@ const Navbar = () => {
           <li className="hover:text-blue-600 hover:font-bold transition-all cursor-pointer">Home</li>
           <li className="hover:text-blue-600 hover:font-bold transition-all cursor-pointer">About</li>
           <li className="hover:text-blue-600 hover:font-bold transition-all cursor-pointer">Contact us</li>
-          <li className="text-blue-600 font-medium hover:font-extrabold transition-all cursor-pointer">
+          <Link to='/SignUp' className="text-blue-600 font-medium hover:font-extrabold transition-all cursor-pointer">
             Register/Login
-          </li>
+          </Link>
         </ul>
       </div>
     </nav>
