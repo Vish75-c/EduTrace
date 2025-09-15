@@ -13,9 +13,36 @@ const SignUp = () => {
     const { register, handleSubmit, setValue, watch, formState: { errors, isSubmitting } } =
         useForm({ mode: "onSubmit", reValidateMode: "onSubmit" });
 
-    const onSubmit = (data) => {
-        Navigate('/Section');
-        console.log(data);
+    const onSubmit = async (data) => {
+        try{
+            // const res=await fetch("http://localhost:3000/SignUp",{
+            //     method:"POST",
+            //      headers:{
+            //         "Context-Type":"application/json",
+            //     },
+            //     credentials:"include",
+               
+            //     body:JSON.stringify(data)
+            // })
+            const res=await fetch('http://localhost:3000/SignUp',{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials:"include",
+        body: JSON.stringify(data), // data comes directly from react-hook-form
+
+      });
+            console.log(data);
+            const result=await res.json();
+            console.log(result); 
+            if(result.success==="true"){
+             Navigate('/section')
+            }
+        }catch(err){
+            console.log(err);
+        }
+        
     };
 
     const videoConstraints = {
