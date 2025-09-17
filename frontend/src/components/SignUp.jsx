@@ -33,11 +33,11 @@ const SignUp = () => {
         body: JSON.stringify(data), // data comes directly from react-hook-form
 
       });
-            console.log(data);
+            Navigate('/Section');
             const result=await res.json();
-            console.log(result); 
-            if(result.success==="true"){
-             Navigate('/section')
+            console.log(typeof(result.success)); 
+            if(result.success===true){
+             Navigate('/Section')
             }
         }catch(err){
             console.log(err);

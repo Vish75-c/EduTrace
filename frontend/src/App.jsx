@@ -4,11 +4,14 @@ import Landing from "./components/Landing";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Section from "./components/Section";
+import Profile from "./components/Profile";
+import Attendance from "./components/Attendance";
 function App() {
   const router=createBrowserRouter([
     {
       path:'/',
       element:<><Landing/></>
+      
     },
     {
       path:'/SignIn',
@@ -20,10 +23,19 @@ function App() {
     },{
       path:'/Section',
       element:<><Section/></>
-    }
+    },
+     {
+      path:'/Section/Profile',
+      element:<><Profile/></>
+    },{
+      path:'/Section/Attendance',
+      element:<><Attendance/></>
+    } 
+    
   ])
   return (
     <><RouterProvider router={router}/></>
+    
   );
 }
 

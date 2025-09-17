@@ -6,7 +6,8 @@ const userschema=new mongoose.Schema({
     collegeid:{type:Number,required:true,unique:true},
     phonenumber:{type:Number,required:true,unique:true},
     password:{type:String,required:true,unique:true},
-    faceImage:{type:String,rquired:true}
+    faceImage:{type:String,rquired:true},
+    faceEncoding: { type: [Number] }
 })
 userschema.pre('save',async function(next){
     const person=this;

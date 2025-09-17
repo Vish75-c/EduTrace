@@ -8,9 +8,9 @@ const SignIn=Router();
 
 SignIn.post('/',authmiddleware,async (req,res)=>{
     try{
-        console.log("visited");
+        
         const user=await userModel.findOne({username:req.body.username});
-        console.log(user);
+        
          const payload={email:user.email,id:user._id};
         const token=createtoken(payload)
         console.log(token);

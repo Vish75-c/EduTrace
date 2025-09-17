@@ -7,9 +7,25 @@ import { useNavigate ,Link} from 'react-router-dom';
 const SignIn = () => {
     const Navigate=useNavigate();
     const { register, handleSubmit, watch, formState: { errors,isSubmitting } } = useForm({mode:"onSubmit",reValidateMode:"onSubmit"});
-    const onSubmit=(data)=>{
-        Navigate('/Section');
-        console.log(data);
+    const onSubmit=async (data)=>{
+        try{
+            console.log("visited");
+            const res=await fetch('http://localhost:3000/SignIn',{
+                method:"POST",
+                headers:{
+                    "Content-Type": "application/json",
+                },
+                credentials:"include",
+                body:JSON.stringify(data)
+            })
+            console.log(res);
+            const result=await res.json();
+            if(result.success==="true"){
+                Navigate('/Section')
+            }
+        }catch(err){
+            console.log(err);
+        }
     }
   return (
     <>
@@ -21,14 +37,14 @@ const SignIn = () => {
                  <h1 className='text-xs'>New User?<Link to="/SignUp" className="text-blue-600">SignUp here</Link></h1>
                 <form  className='flex flex-col w-full items-center mt-8' onSubmit={handleSubmit(onSubmit)}>
                     
-                    <input className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-2 py-3 bg-violet-100 w-[80%]" type="text" placeholder='Email*'
-                    {...register('email',{
+                    <input className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-2 py-3 bg-violet-100 w-[80%]" type="text" placeholder='Username*'
+                    {...register('username',{
                         required:true,
                     })}/>
-                    <div className='h-5 text-red-700 text-sm'>{errors.email&&<p className='text-xm'>*{errors.email.message}</p>}</div>
+                    <div className='h-5 text-red-700 text-sm'>{errors.username&&<p className='text-xm'>*{errors.username.message}</p>}</div>
                     
                     
-                    <input className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-2 py-3 bg-violet-100 w-[80%]" type="text" placeholder='Password*'
+                    <input className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-2 py-3 bg-violet-100 w-[80%]" type="password" placeholder='Password*'
                     {...register("password",{
                         required:true,
                         minLength:{value:3,message:"min length is 4"}

@@ -10,10 +10,10 @@ const Main = () => {
       {/* Hero Section */}
       
       <section
-  className="relative text-center py-35 bg-cover bg-center"
+  className="relative text-center py-40 bg-cover bg-center"
   style={{backgroundImage:'url(/math-student.jpg)' }} 
 >
-  <div className="absolute inset-0  bg-opacity-40 "></div> 
+  
   {/* overlay for readability */}
 
   <div className="relative z-10 max-w-3xl mx-auto px-6 font-mono">
