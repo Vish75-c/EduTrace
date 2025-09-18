@@ -64,7 +64,7 @@ const SignUp = () => {
             >
                 <div className='absolute w-130 text-gray-600 bg-violet-200 flex flex-col items-center m-15 p-4 rounded-lg shadow-lg'>
                     <img src="/logo.png" alt="logo.alt" className='h-20 w-20' />
-                    <h1 className='text-2xl font-extrabold text-blue-600'>Registration Form</h1>
+                    <h1 className='text-2xl font-extrabold text-gray-600'>Registration Form</h1>
                     <h1 className='text-xs'>
                         Already have an account?
                         <Link to="/SignIn" className="text-blue-600"> SignIn here</Link>
@@ -73,9 +73,9 @@ const SignUp = () => {
                     <form className='flex flex-col w-full items-center mt-8' onSubmit={handleSubmit(onSubmit)}>
                        
                         <input
-                            className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-2 py-3 bg-violet-100  w-[80%] "
+                            className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-3 py-3 bg-violet-100  w-[80%] "
                             type="text"
-                            placeholder='Username*'
+                            placeholder='Name*'
                             {...register('username', { required: true, minLength: { value: 4, message: "Min Length is 4" } })}
                         />
                         <div className='h-5 text-red-700 text-sm'>{errors.username && <p className='text-xs'>*{errors.username.message}</p>}</div>
@@ -118,16 +118,15 @@ const SignUp = () => {
 
                         <button
                             type="button"
-                            className="mb-3 px-4 py-2 w-[80%] bg-green-600 text-white rounded-lg hover:bg-green-700"
+                            className="mb-3 p-3 w-[80%] bg-blue-300 text-white rounded-lg hover:bg-blue-400 transition-all duration-300"
                             onClick={() => setShowCam(true)}
                         >
-                            {watch("faceImage")?"Image SuccessFully Taken":"Take Photo"}
+                            {watch("faceImage")?"Image SuccessFully Taken":"Capture Photo"}
                         </button>
                         <input type="hidden" {...register("faceImage")} />
 
                         
-                        
-                        {/* Submit */}
+                       
                         <input
                             className="px-5 py-2 bg-blue-600 text-white rounded-4xl shadow hover:bg-blue-700 hover:scale-105 transition-transform duration-300"
                             type="Submit"
@@ -138,10 +137,10 @@ const SignUp = () => {
                 </div>
             </section>
 
-            {/* Webcam Modal */}
+           
             {showCam && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
-                    <div className="bg-white p-6 rounded-xl shadow-lg text-center">
+                <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-xs  bg-opacity-60 z-50">
+                    <div className="bg-violet-50 p-6 rounded-xl shadow-lg text-center">
                         <Webcam
                             audio={false}
                             ref={webcamRef}
@@ -153,14 +152,14 @@ const SignUp = () => {
                             <button
                                 type="button"
                                 onClick={capture}
-                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                                className=" px-6 py-3 bg-blue-600 text-white rounded-4xl hover:bg-blue-700 hover:scale-105 transition-all duration-300"
                             >
                                 Capture
                             </button>
                             <button
                                 type="button"
                                 onClick={() => setShowCam(false)}
-                                className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                                className="px-6 py-3 bg-gray-500 text-white rounded-4xl hover:bg-gray-600 hover:scale-105 transition-all duration-300"
                             >
                                 Cancel
                             </button>

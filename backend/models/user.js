@@ -6,12 +6,12 @@ const userschema=new mongoose.Schema({
     collegeid:{type:Number,required:true,unique:true},
     phonenumber:{type:Number,required:true,unique:true},
     password:{type:String,required:true,unique:true},
-    faceImage:{type:String,rquired:true},
+    faceImage:{type:String,required:true},
     faceEncoding: { type: [Number] }
 })
 userschema.pre('save',async function(next){
     const person=this;
-    if(person.password.isModified)return next();
+    if (!person.isModified("password")) return next();
     try{
         const password=person.password
         const salt=await bcrypt.genSalt(10);

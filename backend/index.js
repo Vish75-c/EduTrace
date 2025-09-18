@@ -7,6 +7,11 @@ import cors from "cors";
 import Protected from "./routes/Protected.js";
 import cookieParser from "cookie-parser";
 import verify from "./routes/Verify.js";
+import StoreRecord from "./routes/StoreRecord.js";
+import GetUserWithAttendance from "./routes/GetRecord.js";
+
+
+
 configDotenv();
 const app=express();
 const port=process.env.PORT;
@@ -22,6 +27,8 @@ app.use('/SignUp',SignUp);
 app.use('/SignIn',SignIn)  
 app.use('/Protected',Protected); 
 app.use('/verify',verify);
+app.use('/StoreRecord',StoreRecord)
+app.use('/GetRecord',GetUserWithAttendance);
 app.get('/',(req,res)=>{
     res.send("Hello world");
 })

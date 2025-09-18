@@ -6,7 +6,7 @@ import userModel from "../models/user.js";
 const verify = express.Router();
 
 
-const COLLEGE_COORDS = { latitude: 28.480, longitude: 77.518394 }; //28.480755
+const COLLEGE_COORDS = { latitude: 28.480755, longitude: 77.518394 }; //28.480755
 const RADIUS_METERS = 100; // 100-meter allowed radius
 
 verify.post("/", async (req, res) => {

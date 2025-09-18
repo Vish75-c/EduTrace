@@ -9,8 +9,8 @@ import {
   BookOpen,
   PenTool,
   GraduationCap,
-  Bell,
   TrendingUp,
+  Activity,
 } from "lucide-react";
 import Top from "../parts/Top";
 import Bottom from "../parts/Bottom";
@@ -23,28 +23,27 @@ const QuickActionCard = ({ title, btn, color, icon: Icon, onClick }) => {
     purple: "bg-purple-500 hover:bg-purple-600 text-white",
     red: "bg-red-500 hover:bg-red-600 text-white",
     orange: "bg-orange-500 hover:bg-orange-600 text-white",
-    violet: "bg-violet-400 hover:bg-violet-500 text-white", // 🔹 Light violet button
+    violet: "bg-violet-400 hover:bg-violet-500 text-white",
   };
 
   return (
     <div className="group relative overflow-hidden">
-      <div className="bg-white/70 backdrop-blur-sm border border-violet-100 p-8 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-2 hover:scale-[1.02]">
+      <div className="bg-white/70 backdrop-blur-sm border border-violet-100 p-8 rounded-2xl shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:scale-[1.03]">
         {/* Glow effect */}
-        <div className="absolute inset-0 bg-violet-200 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+        <div className="absolute inset-0 bg-violet-300 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl pointer-events-none" />
 
         <div className="relative z-10 flex items-center gap-4 mb-6">
-          <div className="p-4 rounded-xl bg-violet-100 text-violet-500 shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-110">
-            <Icon size={28} />
+          <div className="p-4 rounded-xl bg-violet-100 text-violet-600 shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-110">
+            <Icon size={30} />
           </div>
-          <h2 className="font-bold text-xl text-gray-800 group-hover:text-violet-600 transition-colors duration-300">
+          <h2 className="font-bold text-xl text-gray-700 group-hover:text-violet-600 transition-colors duration-500">
             {title}
           </h2>
         </div>
 
-        {/* 🔹 Button triggers navigation */}
         <button
           onClick={onClick}
-          className={`w-full px-6 py-4 rounded-4xl text-lg font-semibold shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105 ${actionColors[color]}`}
+          className={`w-full px-6 py-4 rounded-full text-lg font-semibold shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105 ${actionColors[color]}`}
         >
           {btn}
         </button>
@@ -59,19 +58,18 @@ const ClassCard = ({ name, time, color }) => {
     blue: "border-blue-500 bg-blue-50",
     green: "border-green-500 bg-green-50",
     purple: "border-purple-500 bg-purple-50",
-    violet: "border-violet-400 bg-violet-50", // 🔹 Soft violet card
+    violet: "border-violet-500 bg-violet-50",
   };
 
   return (
     <div
-      className={`${classColors[color]} border-l-4 p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.02]`}
+      className={`${classColors[color]} border-l-4 p-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]`}
     >
       <div className="flex items-center justify-between">
         <div>
           <p className="font-semibold text-gray-800">{name}</p>
           <p className="text-sm text-gray-500 flex items-center gap-2 mt-1">
-            <Clock size={14} />
-            {time}
+            <Clock size={14} /> {time}
           </p>
         </div>
         <div className="w-3 h-3 rounded-full bg-violet-500 animate-pulse" />
@@ -82,26 +80,25 @@ const ClassCard = ({ name, time, color }) => {
 
 // 🔹 Teacher Dashboard
 export default function Section() {
-  const [, setOpen] = useState(false);
   const navigate = useNavigate();
-  const [user,setuser]=useState([]);
-  useEffect(()=>{
-    try{
-      const func=async()=>{
-        const res=await fetch('http://localhost:3000/Protected',{
-          method:"GET",
-          credentials:"include"
-        })
-        const result=await res.json();
-        setuser(result.user);
-        console.log(result);
-      }
-      func();
-    }catch(err){
-    
-    }
+  const [user, setuser] = useState([]);
 
-  },[])
+  useEffect(() => {
+    try {
+      const func = async () => {
+        const res = await fetch("http://localhost:3000/Protected", {
+          method: "GET",
+          credentials: "include",
+        });
+        const result = await res.json();
+        setuser(result.user);
+      };
+      func();
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   const todayClasses = [
     { name: "Mathematics - Grade 8", time: "9:00 AM - 10:00 AM", color: "blue" },
     { name: "Science - Grade 7", time: "10:30 AM - 11:30 AM", color: "green" },
@@ -117,43 +114,39 @@ export default function Section() {
   return (
     <>
       <Top />
-      <LoginPop/>
-      <div className="min-h-screen bg-gradient-to-br from-violet-100 to-violet-300">
+      <LoginPop />
+      <div className="min-h-screen bg-gradient-to-br from-violet-100 to-violet-200">
         {/* Header */}
-        <header className="bg-gradient-to-r from-violet-400 to-violet-500 text-white shadow-md">
-          <div className="max-w-7xl mx-auto px-6 py-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
-                <p className="text-white/80 text-lg">
-                  Welcome back, {user.username}
-                  <span className="block text-sm opacity-75 mt-1">
-                    Here's an overview of your day
-                  </span>
-                </p>
-              </div>
-            </div>
+        <header className="bg-gradient-to-r from-violet-500 to-violet-600 text-white shadow-lg">
+          <div className="max-w-7xl mx-auto px-6 py-10">
+            <h1 className="text-4xl font-bold">Dashboard</h1>
+            <p className="text-white/80 text-lg mt-2">
+              Welcome back, <span className="font-semibold">{user.username}</span>
+            </p>
+            <p className="text-sm opacity-75">Here’s an overview of your day</p>
           </div>
         </header>
 
         <div className="max-w-7xl mx-auto p-6 md:p-10">
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {stats.map((stat, idx) => (
               <div
                 key={idx}
-                className="bg-white/70 backdrop-blur-sm border border-violet-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+                className="bg-white/80 backdrop-blur-sm border border-violet-100 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
               >
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-gray-500 font-medium">{stat.title}</p>
-                    <p className="text-3xl font-bold text-gray-800 mt-2">{stat.value}</p>
+                    <p className="text-3xl font-bold text-gray-700 mt-2">
+                      {stat.value}
+                    </p>
                     <p className="text-sm text-green-600 font-semibold mt-1">
                       {stat.trend}
                     </p>
                   </div>
-                  <div className="p-3 rounded-xl bg-violet-100 text-violet-500">
-                    <stat.icon size={28} />
+                  <div className="p-3 rounded-xl bg-violet-100 text-violet-600">
+                    <stat.icon size={30} />
                   </div>
                 </div>
               </div>
@@ -161,7 +154,7 @@ export default function Section() {
           </div>
 
           {/* Quick Actions */}
-          <div className="mb-12">
+          <div className="mb-14">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1 h-8 bg-violet-500 rounded-full" />
               <h2 className="text-2xl font-bold text-gray-800">Quick Actions</h2>
@@ -213,14 +206,16 @@ export default function Section() {
           </div>
 
           {/* Main Grid */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-10">
             {/* Classes */}
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-1 h-8 bg-violet-500 rounded-full" />
-                <h2 className="text-2xl font-bold text-gray-800">📚 Today's Classes</h2>
+                <h2 className="text-2xl font-bold text-gray-700 flex items-center gap-2">
+                  <BookOpen className="w-6 h-6 text-violet-600" /> Today’s Classes
+                </h2>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {todayClasses.map((item, idx) => (
                   <ClassCard
                     key={idx}
@@ -236,30 +231,36 @@ export default function Section() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-1 h-8 bg-violet-500 rounded-full" />
-                <h2 className="text-2xl font-bold text-gray-800">🎯 Student Engagement</h2>
+                <h2 className="text-2xl font-bold text-gray-700 flex items-center gap-2">
+                  <Activity className="w-6 h-6 text-violet-600" /> Student Engagement
+                </h2>
               </div>
-              <div className="space-y-4">
-                <div className="bg-white/70 backdrop-blur-sm border border-violet-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.02]">
+              <div className="space-y-5">
+                {/* Activities */}
+                <div className="bg-white/80 backdrop-blur-sm border border-violet-100 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h3 className="font-bold text-gray-800 text-lg">
+                      <h3 className="font-bold text-gray-700 text-lg">
                         Activity Suggestions
                       </h3>
                       <p className="text-gray-500 mt-1">
-                        Boost participation and understanding through curated activities.
+                        Boost participation and understanding with curated tasks.
                       </p>
                     </div>
-                    <div className="p-2 rounded-lg bg-violet-100 text-violet-500">
+                    <div className="p-2 rounded-lg bg-violet-100 text-violet-600">
                       <TrendingUp size={20} />
                     </div>
                   </div>
-                  <button className="w-full bg-violet-400 hover:bg-violet-500 text-white px-5 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300 shadow-sm">
                     View Activities →
                   </button>
                 </div>
 
-                <div className="bg-white/70 backdrop-blur-sm border border-violet-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.02]">
-                  <h3 className="font-bold text-gray-800 text-lg mb-3">Recent Activity</h3>
+                {/* Recent Activity */}
+                <div className="bg-white/80 backdrop-blur-sm border border-violet-100 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                  <h3 className="font-bold text-gray-700 text-lg mb-4 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-violet-600" /> Recent Activity
+                  </h3>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 p-3 rounded-lg bg-violet-50">
                       <div className="w-2 h-2 rounded-full bg-green-500" />

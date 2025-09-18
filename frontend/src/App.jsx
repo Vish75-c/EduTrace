@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp";
 import Section from "./components/Section";
 import Profile from "./components/Profile";
 import Attendance from "./components/Attendance";
+import Record from "./components/Record";
 function App() {
   const router=createBrowserRouter([
     {
@@ -30,7 +31,10 @@ function App() {
     },{
       path:'/Section/Attendance',
       element:<><Attendance/></>
-    } 
+    },{
+      path:'/Section/Records',
+      element:<><Record/></>
+    }
     
   ])
   return (
