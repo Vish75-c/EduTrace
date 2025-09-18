@@ -6,6 +6,7 @@ import SignIn from "./routes/SignIn.js";
 import cors from "cors";
 import Protected from "./routes/Protected.js";
 import cookieParser from "cookie-parser";
+import verify from "./routes/Verify.js";
 configDotenv();
 const app=express();
 const port=process.env.PORT;
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use('/SignUp',SignUp);
 app.use('/SignIn',SignIn)  
 app.use('/Protected',Protected); 
+app.use('/verify',verify);
 app.get('/',(req,res)=>{
     res.send("Hello world");
 })

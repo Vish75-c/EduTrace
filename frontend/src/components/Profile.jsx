@@ -2,6 +2,7 @@ import React from 'react';
 import Top from '../parts/Top';
 import { useState,useEffect } from 'react';
 import Bottom from '../parts/Bottom';
+import LoginPop from '../parts/LogInPop';
 const Profile = () => {
   // You will fetch the user data here.
   // For now, we'll use placeholder values.
@@ -31,8 +32,9 @@ const Profile = () => {
 
   return (<>
     <Top/>
-    <div className="bg-violet-100 min-h-screen flex items-center justify-center p-4">
-      <div className="bg-violet-200 rounded-xl shadow-lg p-8 w-full max-w-120">
+    <LoginPop/>
+    <div className="bg-gradient-to-br from-violet-50 to-violet-200 min-h-screen flex items-center justify-center p-4">
+      <div className="bg-gradient-to-br from-violet-100 to-violet-300 rounded-xl shadow-lg p-8 w-full max-w-120">
         <div className="flex flex-col items-center">
           <img
             src={user.faceImage} 
