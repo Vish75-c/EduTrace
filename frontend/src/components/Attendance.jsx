@@ -54,6 +54,7 @@ export default function FaceCapture() {
         headers: { "Content-Type": "application/json" },
       });
       const result = await res.json();
+      console.log(result);
       console.log(result.record);
     } catch (err) {
       console.log(err);
@@ -83,6 +84,7 @@ export default function FaceCapture() {
           });
 
           const result = await res.json();
+          console.log(result);
           const data = {
             userId: user._id,
             status: "Present",
@@ -101,6 +103,7 @@ export default function FaceCapture() {
             storeRecord(data);
           }
         } catch (err) {
+          console.log("visited");
           setErrorMsg("Server error: " + err.message);
         }
       },

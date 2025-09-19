@@ -5,7 +5,6 @@ const attendanceSchema = new mongoose.Schema({
     date: {
     type: Date,
     required: true,
-    unique:true,
     default: () => {
       const today = new Date();
       today.setHours(0, 0, 0, 0); // strip time → only date remains

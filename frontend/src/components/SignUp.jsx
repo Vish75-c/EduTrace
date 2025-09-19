@@ -75,7 +75,7 @@ const SignUp = () => {
                         <input
                             className="hover:shadow-lg transition duration-200 outline-none rounded-lg cursor-pointer p-3 py-3 bg-violet-100  w-[80%] "
                             type="text"
-                            placeholder='Name*'
+                            placeholder='Username*'
                             {...register('username', { required: true, minLength: { value: 4, message: "Min Length is 4" } })}
                         />
                         <div className='h-5 text-red-700 text-sm'>{errors.username && <p className='text-xs'>*{errors.username.message}</p>}</div>
